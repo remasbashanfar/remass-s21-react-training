@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const variable= "french fries";
   return (
     <div className="App">
       <header className="App-header">
@@ -16,6 +17,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+        {variable}
         </a>
       </header>
     </div>
