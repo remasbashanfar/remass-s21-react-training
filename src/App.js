@@ -3,12 +3,20 @@ import './App.css';
 
 function App() {
   const variable= "french fries";
+  function getsnack(){
+    return variable;
+  }
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {getsnack()}
+
+          Edit <code>src/App.js
+          
+          </code> and save to reload.
+          
         </p>
         <a
           className="App-link"
@@ -17,7 +25,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        {variable}
+        
         </a>
       </header>
     </div>
