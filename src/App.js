@@ -1,21 +1,45 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  const variable= "french fries";
-  function getsnack(){
-    return variable;
+
+  const FOOD = ["french fries", "kitkat", "pasta", "burgers"];
+
+  class FoodNames extends React.Component {
+    state={
+      likes: 0
+    }
+    clickHander = () =>{
+      this.setState({likes: this.state.likes + 1})
+    }
+    render = () =>{
+      return (
+        <div>
+        <hr/>
+          {this.props.name}!!
+          <p>
+            likes: {this.state.likes}
+          </p>
+          <button onClick={this.clickHander}>likes</button>
+          <button>remove</button>
+          <button>duplicate</button>
+        </div>
+      )
+    }
   }
+function App() {
+  
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {getsnack()}
+          {
+            FOOD.map((x)=> {
+              return <FoodNames name={x} key={x}/>
+          })
 
-          Edit <code>src/App.js
-          
-          </code> and save to reload.
+          }
           
         </p>
         <a
@@ -24,8 +48,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
-        hi
+          
+
+
         </a>
       </header>
     </div>
