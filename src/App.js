@@ -1,58 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import Task from './Task';
 
 
-  const FOOD = ["french fries", "kitkat", "pasta", "burgers"];
-
-  class FoodNames extends React.Component {
-    state={
-      likes: 0
-    }
-    clickHander = () =>{
-      this.setState({likes: this.state.likes + 1})
-    }
-    render = () =>{
-      return (
-        <div>
-        <hr/>
-          {this.props.name}!!
-          <p>
-            likes: {this.state.likes}
-          </p>
-          <button onClick={this.clickHander}>likes</button>
-          <button>remove</button>
-          <button>duplicate</button>
-        </div>
-      )
-    }
-  }
 function App() {
-  
+  const [inputTask, setInputTask] = useState(""); 
+  const [taskList, setTaskList] = useState([]); 
+  const addTask = () => {
+    setTaskList([...taskList, inputTask]);
+    setInputTask("");
+  }
+
+  useEffect(() => {
+    console.log("rendering!");
+    return () => {console.log("final cleanup")};
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {
-            FOOD.map((x)=> {
-              return <FoodNames name={x} key={x}/>
+    <div className="todo-list">
+      <header className="header">Remas's To Do List</header>
+      <br/>
+              <input type="text" onChange={(event) => { setInputTask(event.target.value) }} value={inputTask} />
+        <button className='btn' onClick={addTask} > Add Task</button>
+        {
+
+          taskList.map((value, index) => {
+            return <Task
+              className= "todo-item"
+              key={value}
+              name={value}
+              index={index}
+              taskList={taskList}
+              setTaskList={setTaskList}>
+            </Task>
           })
-
-          }
-          
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          
-
-
-        </a>
-      </header>
+        }
     </div>
   );
 }
